@@ -9,13 +9,12 @@ class CustomBestSellerListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-          itemBuilder: (context, index) => CustomBestSellerItem(),
-          separatorBuilder: (context, index) => SizedBox(
-            height: 20,
-          ),
-          itemCount: 5),
-    );
+    return ListView.separated(
+        physics: NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => CustomBestSellerItem(),
+        separatorBuilder: (context, index) => SizedBox(
+          height: 20,
+        ),
+        itemCount: 5);
   }
 }
