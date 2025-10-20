@@ -1,6 +1,8 @@
 import 'package:bookly/core/constants.dart';
+import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/assets_data.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -18,7 +20,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                GoRouter.of(context).push(AppRouter.kSearchView);
+              },
               icon: Icon(
                 Icons.search_rounded,
                 size: 30,
