@@ -11,11 +11,6 @@ class BookingRating extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
-          "19.99 €",
-          style: Styles.textStyle20b,
-        ),
-        Spacer(),
         Icon(
           Icons.star_rate_rounded,
           color: Colors.amber,

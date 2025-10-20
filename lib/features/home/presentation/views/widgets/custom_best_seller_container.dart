@@ -13,11 +13,17 @@ class CustomBestSellerContainer extends StatelessWidget {
       height: 105,
       width: 70,
       decoration: BoxDecoration(
-          color: Colors.red, borderRadius: BorderRadius.circular(20)),
-      child: Image.asset(
-        AssetsData.bookImage,
-        fit: BoxFit.fill,
-      ),
+          image: DecorationImage(
+           fit: BoxFit.fill,
+              image: AssetImage(
+            AssetsData.bookImage
+          )),
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(12)),
+      // child: Image.asset(
+      //   AssetsData.bookImage,
+      //   fit: BoxFit.fill,
+      // ),
     );
   }
 }
