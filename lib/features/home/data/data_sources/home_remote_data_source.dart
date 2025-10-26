@@ -1,6 +1,8 @@
+import 'package:bookly/core/constants.dart';
 import 'package:bookly/core/utils/api_services.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 
+import '../../../../core/utils/functions/save_books_data.dart';
 import '../models/book_model.dart';
 
 abstract class HomeRemoteDataSource {
@@ -19,6 +21,7 @@ class HomeRemoteDataSourceImplementation implements HomeRemoteDataSource {
     var date = await apiServices.get(
         endPoint: "volumes?q=programming&Filtering=free-ebooks");
     List<BookEntity> books = getBooksList(date);
+    saveBooksData(books, kFeaturedBoxKey);
     return books;
   }
 
@@ -27,6 +30,7 @@ class HomeRemoteDataSourceImplementation implements HomeRemoteDataSource {
     var date = await apiServices.get(
         endPoint: "volumes?q=programming&Filtering=free-ebooks&sorting=newest");
     List<BookEntity> books = getBooksList(date);
+    saveBooksData(books, kNewsBoxKey);
     return books;
   }
 
