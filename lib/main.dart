@@ -15,12 +15,12 @@ import 'package:hive_flutter/adapters.dart';
 import 'core/utils/functions/set_up_service_locator.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   setUpServiceLocator();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kFeaturedBoxKey);
-  await Hive.openBox(kNewsBoxKey);
+  await Hive.openBox<BookEntity>(kFeaturedBoxKey);
+  await Hive.openBox<BookEntity>(kNewsBoxKey);
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
@@ -35,13 +35,14 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) {
             return FeaturedBooksCubit(
-                FetchFeaturesBooksUseCase(getIt.get<HomeRepoImplementation>()));
+                FetchFeaturesBooksUseCase(getIt.get<HomeRepoImplementation>()))
+              ..fetchFeaturedBooks();
           },
         ),
         BlocProvider(
           create: (context) {
             return NewsBooksCubit(
-                FetchNewsBooksUseCase(getIt.get<HomeRepoImplementation>()));
+                FetchNewsBooksUseCase(getIt.get<HomeRepoImplementation>()))..fetchNewsBooks();
           },
         ),
       ],

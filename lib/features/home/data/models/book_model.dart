@@ -39,7 +39,9 @@ class Item extends BookEntity {
             authorName: volumeInfo?.authors.isNotEmpty == true
                 ? volumeInfo?.authors[0]
                 : 'No Author',
-            price: saleInfo?.listPrice?.amount,
+      price: (saleInfo?.listPrice?.amount
+          ?? saleInfo?.retailPrice?.amount
+          ?? 0.0).toDouble(),
             rating: volumeInfo?.averageRating);
 
   final String? kind;
@@ -52,6 +54,7 @@ class Item extends BookEntity {
   final SearchInfo? searchInfo;
 
   factory Item.fromJson(Map<String, dynamic> json) {
+    print(json["saleInfo"]); // 👈 شوف بيرجع إيه هنا
     return Item(
       kind: json["kind"],
       id: json["id"],

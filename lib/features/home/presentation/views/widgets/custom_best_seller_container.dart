@@ -1,29 +1,24 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets_data.dart';
-
 class CustomBestSellerContainer extends StatelessWidget {
+  final String imageUrl;
+
   const CustomBestSellerContainer({
     super.key,
+    required this.imageUrl,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 105,
-      width: 70,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-           fit: BoxFit.fill,
-              image: AssetImage(
-            AssetsData.bookImage
-          )),
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(12)),
-      // child: Image.asset(
-      //   AssetsData.bookImage,
-      //   fit: BoxFit.fill,
-      // ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        height: 105,
+        width: 70,
+        fit: BoxFit.fill,
+      ),
     );
   }
 }

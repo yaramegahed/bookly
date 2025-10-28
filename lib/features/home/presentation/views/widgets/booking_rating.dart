@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 
 class BookingRating extends StatelessWidget {
+  final String? rating;
   const BookingRating({
-    super.key,
+    super.key, this.rating,
   });
 
   @override
@@ -20,7 +21,7 @@ class BookingRating extends StatelessWidget {
           width: 7,
         ),
         Text(
-          "4.8",
+          rating??"4.8",
           style: Styles.textStyle16m,
         ),
         SizedBox(

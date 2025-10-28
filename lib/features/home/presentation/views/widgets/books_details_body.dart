@@ -25,7 +25,7 @@ class BooksDetailsBody extends StatelessWidget {
                 SizedBox(
                   height: 34,
                 ),
-                CustomBookContainer(),
+                CustomBookContainer(imageUrl: '',),
                 SizedBox(
                   height: 40,
                 ),

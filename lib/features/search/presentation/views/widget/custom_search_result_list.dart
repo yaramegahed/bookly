@@ -11,7 +11,13 @@ class CustomSearchResultList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView.separated(
-            itemBuilder: (context, index) => CustomBestSellerItem(),
+            itemBuilder: (context, index) => CustomBestSellerItem(
+                  imageUrl: '',
+                  bookName: '',
+                  bookAuthor: '',
+                  bookPrice: .5,
+                  bookRating: 44,
+                ),
             separatorBuilder: (context, index) => SizedBox(
                   height: 10,
                 ),

@@ -14,7 +14,7 @@ class CustomDetailsListView extends StatelessWidget {
         child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) =>
-                CustomBestSellerContainer(),
+                CustomBestSellerContainer(imageUrl: '',),
             separatorBuilder: (context, index) => SizedBox(
               width: 10,
             ),

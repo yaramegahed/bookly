@@ -7,8 +7,19 @@ import 'booking_rating.dart';
 import 'custom_best_seller_container.dart';
 
 class CustomBestSellerItem extends StatelessWidget {
+  final String imageUrl;
+  final String bookName;
+  final String bookAuthor;
+  final double? bookPrice;
+  final double bookRating;
+
   const CustomBestSellerItem({
     super.key,
+    required this.imageUrl,
+    required this.bookName,
+    required this.bookAuthor,
+    required this.bookPrice,
+    required this.bookRating,
   });
 
   @override
@@ -19,30 +30,32 @@ class CustomBestSellerItem extends StatelessWidget {
       },
       child: Row(
         children: [
-          CustomBestSellerContainer(),
+          CustomBestSellerContainer(
+            imageUrl: imageUrl,
+          ),
           SizedBox(width: 30),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  child: Text("Harry Potter \nand the Goblet of Fire",
+                  child: Text(bookName,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20sb),
                 ),
                 Text(
-                  "J.K. Rowling",
+                  bookAuthor,
                   style: Styles.textStyle14sb,
                 ),
                 Row(
                   children: [
                     Text(
-                      "19.99 €",
+                      bookPrice != null ? "${bookPrice!.toStringAsFixed(2)} €" : "Free",
                       style: Styles.textStyle20b,
                     ),
                     Spacer(),
-                    BookingRating()
+                    BookingRating(rating: bookRating.toString(),)
                   ],
                 ),
               ],

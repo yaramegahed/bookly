@@ -6,7 +6,7 @@ import '../../../../core/utils/functions/save_books_data.dart';
 import '../models/book_model.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<BookEntity>> fetchFeaturesBook();
+  Future<List<BookEntity>> fetchFeaturesBook({int pageNumber = 0});
 
   Future<List<BookEntity>> fetchNewsBook();
 }
@@ -17,9 +17,10 @@ class HomeRemoteDataSourceImplementation implements HomeRemoteDataSource {
   HomeRemoteDataSourceImplementation(this.apiServices);
 
   @override
-  Future<List<BookEntity>> fetchFeaturesBook() async {
+  Future<List<BookEntity>> fetchFeaturesBook({int pageNumber = 0}) async {
     var date = await apiServices.get(
-        endPoint: "volumes?q=programming&Filtering=free-ebooks");
+        endPoint:
+            "volumes?q=programming&Filtering=free-ebooks&startIndex=${pageNumber * 10}");
     List<BookEntity> books = getBooksList(date);
     saveBooksData(books, kFeaturedBoxKey);
     return books;
