@@ -5,14 +5,14 @@ import '../../../../core/errors/failure.dart';
 import '../entities/book_entity.dart';
 import '../repos/home_repo.dart';
 
-class FetchNewsBooksUseCase extends UseCase<List<BookEntity>,int> {
+class FetchNewBooksUseCase extends UseCase<List<BookEntity>,int> {
   final HomeRepo homeRepo;
 
-  FetchNewsBooksUseCase(this.homeRepo);
+  FetchNewBooksUseCase(this.homeRepo);
 
   @override
   Future<Either<Failure, List<BookEntity>>> call([int pageNumber =0]) async {
-    return await homeRepo.fetchNewsBook();
+    return await homeRepo.fetchNewsBook(pageNumber);
   }
 }
 

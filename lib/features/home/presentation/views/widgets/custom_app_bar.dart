@@ -9,30 +9,29 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 22.0),
-      child: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: kPrimaryColor,
-        title: Image.asset(
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: kPrimaryColor,
+      title: Padding(
+        padding: const EdgeInsets.only(left: 22.0),
+        child: Image.asset(
           AssetsData.logoImage,
           width: 75,
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRouter.kSearchView);
-              },
-              icon: Icon(
-                Icons.search_rounded,
-                size: 30,
-              ))
-        ],
       ),
+      actions: [
+        IconButton(
+            onPressed: () {
+              GoRouter.of(context).push(AppRouter.kSearchView,);
+            },
+            icon: Icon(
+              Icons.search_rounded,
+              size: 30,
+            ))
+      ],
     );
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size(double.infinity, kToolbarHeight);
 }

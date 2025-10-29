@@ -1,10 +1,9 @@
-import 'package:bookly/features/home/presentation/manger/news_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/book_entity.dart';
+import '../../manger/newest_books_cubit/new_books_cubit.dart';
 import 'custom_best_seller_list_view.dart';
-import 'featured_books_list_view_loading.dart';
 
 class CustomBestSellerListViewBuilder extends StatefulWidget {
   const CustomBestSellerListViewBuilder({
@@ -22,22 +21,22 @@ class _CustomBestSellerListViewBuilderState
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NewsBooksCubit, NewsBooksState>(
+    return BlocConsumer<NewBooksCubit, NewBooksState>(
       builder: (BuildContext context, state) {
-        if (state is NewsBooksSuccess) {
+        if (state is NewBooksSuccess) {
           return CustomBestSellerListView(
             books: books,
           );
-        } else if (state is NewsBooksFailure) {
+        } else if (state is NewBooksFailure) {
           return Text(state.errorMessage);
         }
         return Center(child: CircularProgressIndicator());
       },
       listener: (context, state) {
-        if (state is NewsBooksSuccess) {
+        if (state is NewBooksSuccess) {
           books = state.books;
         }
-        if (state is NewsBooksFailure) {
+        if (state is NewBooksFailure) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
             (state.errorMessage),

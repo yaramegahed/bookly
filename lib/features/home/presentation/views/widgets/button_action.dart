@@ -4,8 +4,9 @@ import '../../../../../core/constants.dart';
 import 'custom_button.dart';
 
 class ButtonAction extends StatelessWidget {
+  final double price;
   const ButtonAction({
-    super.key,
+    super.key, required this.price,
   });
 
   @override
@@ -14,7 +15,7 @@ class ButtonAction extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomButton(
-          text: '19.99',
+          text: price.toString(),
         ),
         CustomButton(
           textColor: Colors.white,

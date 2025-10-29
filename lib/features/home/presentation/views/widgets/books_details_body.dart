@@ -2,12 +2,25 @@ import 'package:bookly/core/utils/styles.dart';
 import 'package:bookly/features/home/presentation/views/widgets/booking_rating.dart';
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_container.dart';
 import 'package:flutter/material.dart';
+import '../../../domain/entities/book_entity.dart';
 import 'button_action.dart';
 import 'custom_details_app_bar.dart';
 import 'custom_details_list_view.dart';
 
 class BooksDetailsBody extends StatelessWidget {
-  const BooksDetailsBody({super.key});
+  final String imageUrl;
+  final String title;
+  final String bookAuthor;
+  final double price;
+  final List<BookEntity> allBooks;
+
+  const BooksDetailsBody(
+      {super.key,
+      required this.imageUrl,
+      required this.title,
+      required this.bookAuthor,
+      required this.price,
+      required this.allBooks});
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +38,19 @@ class BooksDetailsBody extends StatelessWidget {
                 SizedBox(
                   height: 34,
                 ),
-                CustomBookContainer(imageUrl: '',),
+                CustomBookContainer(
+                  imageUrl: imageUrl,
+                ),
                 SizedBox(
                   height: 40,
                 ),
                 Text(
-                  "The Jungle Book",
-                  style: Styles.textStyle30,
+                  textAlign: TextAlign.center,
+                  title,
+                  style: Styles.textStyle20b,
                 ),
                 Text(
-                  "Rudyard Kipling",
+                  bookAuthor,
                   style:
                       Styles.textStyle18m.copyWith(fontStyle: FontStyle.italic),
                 ),
@@ -50,7 +66,9 @@ class BooksDetailsBody extends StatelessWidget {
                 SizedBox(
                   height: 37,
                 ),
-                ButtonAction(),
+                ButtonAction(
+                  price: price,
+                ),
                 SizedBox(
                   height: 49,
                 ),
@@ -61,7 +79,9 @@ class BooksDetailsBody extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                CustomDetailsListView()
+                CustomDetailsListView(
+                  books: allBooks.where((b) => b.title != title).toList(),
+                )
               ],
             ),
           ),

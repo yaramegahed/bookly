@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../domain/entities/book_entity.dart';
 import 'booking_rating.dart';
 import 'custom_best_seller_container.dart';
 
 class CustomBestSellerItem extends StatelessWidget {
+  final BookEntity books;
+
   final String imageUrl;
   final String bookName;
   final String bookAuthor;
@@ -20,13 +23,14 @@ class CustomBestSellerItem extends StatelessWidget {
     required this.bookAuthor,
     required this.bookPrice,
     required this.bookRating,
+    required this.books,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(AppRouter.kBookDetailsView);
+        context.push(AppRouter.kBookDetailsView, extra: books);
       },
       child: Row(
         children: [
@@ -51,11 +55,15 @@ class CustomBestSellerItem extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      bookPrice != null ? "${bookPrice!.toStringAsFixed(2)} €" : "Free",
+                      bookPrice != null
+                          ? "${bookPrice!.toStringAsFixed(2)} €"
+                          : "Free",
                       style: Styles.textStyle20b,
                     ),
                     Spacer(),
-                    BookingRating(rating: bookRating.toString(),)
+                    BookingRating(
+                      rating: bookRating.toString(),
+                    )
                   ],
                 ),
               ],

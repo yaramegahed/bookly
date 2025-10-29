@@ -27,8 +27,9 @@ class _CustomBestSellerListViewState extends State<CustomBestSellerListView> {
                 imageUrl: widget.books[index].image ?? "",
                 bookName: widget.books[index].title,
                 bookAuthor: widget.books[index].authorName ?? "",
-                bookPrice: widget.books[index].price?.toDouble()??0.8 ,
-                bookRating: widget.books[index].rating?.toDouble() ?? 4.8,
+                bookPrice: widget.books[index].price?.toDouble() ?? 0.0,
+                bookRating: widget.books[index].rating?.toDouble() ?? 0.0,
+                books: widget.books[index],
               ),
           separatorBuilder: (context, index) => SizedBox(
                 height: 20,
